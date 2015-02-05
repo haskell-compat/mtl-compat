@@ -1,0 +1,38 @@
+name:                mtl-compat
+version:             0.1
+synopsis:            Orphan mtl instances for ExceptT from transformers-compat
+-- description:         
+homepage:            https://github.com/RyanGlScott/mtl-compat
+bug-reports:         https://github.com/RyanGlScott/mtl-compat/issues
+stability:           Provisional
+license:             BSD3
+license-file:        LICENSE
+author:              Ryan Scott
+maintainer:          Ryan Scott <ryan.gl.scott@ku.edu>
+copyright:           (C) 2015 Ryan Scott
+category:            Compatibility
+build-type:          Simple
+extra-source-files:  CHANGELOG.md, README.md
+cabal-version:       >=1.8
+
+source-repository head
+  type:                git
+  description:         git://github.com/RyanGlScott/mtl-compat.git
+
+flag three
+  default:             False
+  manual:              True
+  description:         Use transformers-0.3 or lower.
+
+library
+  build-depends:       base                >= 4.3   && < 5
+
+  if flag(three)
+    exposed-modules:   Control.Monad.Except
+    hs-source-dirs:    src
+    build-depends:     mtl                 >= 2.0.1 && < 2.2.1
+                     , transformers-compat >= 0.3   && < 0.4
+  else
+    build-depends:     mtl                 >= 2.2.1 && < 2.3
+
+  ghc-options:         -Wall
