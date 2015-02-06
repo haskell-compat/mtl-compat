@@ -1,4 +1,38 @@
 {-# LANGUAGE CPP #-}
+#if !(MIN_VERSION_mtl(2,2,0))
+{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, UndecidableInstances #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
+#endif
+{- |
+Module      :  Control.Monad.Error
+Copyright   :  (c) Michael Weber <michael.weber@post.rwth-aachen.de> 2001,
+               (c) Jeff Newbern 2003-2006,
+               (c) Andriy Palamarchuk 2006
+License     :  BSD-style (see the file LICENSE)
+
+Maintainer  :  libraries@haskell.org
+Stability   :  experimental
+Portability :  non-portable (multi-parameter type classes)
+
+[Computation type:] Computations which may fail or throw exceptions.
+
+[Binding strategy:] Failure records information about the cause\/location
+of the failure. Failure values bypass the bound function,
+other values are used as inputs to the bound function.
+
+[Useful for:] Building computations from sequences of functions that may fail
+or using exception handling to structure error handling.
+
+[Example type:] @'Data.Either' String a@
+
+The Error monad (also called the Exception monad).
+-}
+
+{-
+  Rendered by Michael Weber <mailto:michael.weber@post.rwth-aachen.de>,
+  inspired by the Haskell Monad Template Library from
+    Andy Gill (<http://web.cecs.pdx.edu/~andy/>)
+-}
 module Control.Monad.Except
   (
     -- * Monads with error handling
@@ -27,7 +61,7 @@ module Control.Monad.Except
 import Control.Monad.Error.Class
 import Control.Monad.Trans
 import Control.Monad.Trans.Except
-  ( ExceptT(ExceptT), Except, except
+  ( ExceptT(ExceptT), Except
   , runExcept, runExceptT
   , mapExcept, mapExceptT
   , withExcept, withExceptT
@@ -40,8 +74,45 @@ import Control.Monad.Fix
 import Control.Monad.Instances ()
 #endif
 
-#if !(MIN_VERSION_mtl(2,2,0))
+#if MIN_VERSION_mtl(2,2,0)
+import Control.Monad.Cont.Class   ()
+import Control.Monad.RWS.Class    ()
+import Control.Monad.Reader.Class ()
+import Control.Monad.State.Class  ()
+import Control.Monad.Writer.Class ()
+#else
+import Control.Monad.Cont.Class (MonadCont(..))
+import Control.Monad.Reader.Class (MonadReader(..))
+import Control.Monad.RWS.Class (MonadRWS)
+import Control.Monad.State.Class (MonadState(..))
+import Control.Monad.Writer.Class (MonadWriter(..))
+import Control.Monad.Trans.Except
+  ( liftCallCC, throwE, catchE, liftListen, liftPass )
 
+instance MonadCont m => MonadCont (ExceptT e m) where
+    callCC = liftCallCC callCC
+
+instance Monad m => MonadError e (ExceptT e m) where
+    throwError = throwE
+    catchError = catchE
+
+instance MonadRWS r w s m => MonadRWS r w s (ExceptT e m)
+
+instance MonadReader r m => MonadReader r (ExceptT e m) where
+    ask    = lift ask
+    local  = mapExceptT . local
+    reader = lift . reader
+
+instance MonadState s m => MonadState s (ExceptT e m) where
+    get   = lift get
+    put   = lift . put
+    state = lift . state
+
+instance MonadWriter w m => MonadWriter w (ExceptT e m) where
+    writer = lift . writer
+    tell   = lift . tell
+    listen = liftListen listen
+    pass   = liftPass pass
 #endif
 
 {- $customErrorExample

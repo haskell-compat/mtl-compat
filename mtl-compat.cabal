@@ -1,7 +1,16 @@
 name:                mtl-compat
 version:             0.1
 synopsis:            Orphan mtl instances for ExceptT from transformers-compat
--- description:         
+description:         This package backports the "Control.Monad.Except" module (if
+                     using @mtl-2.2.0.1@ or earlier) and monad class instances for
+                     @ExceptT@ from @transformers-compat@ (if using @mtl-2.1.3.1@
+                     or earlier).
+                     .
+                     Note that unlike how @mtl-2.2@ or later works, the
+                     "Control.Monad.Except" module defined in this package exports
+                     all of @ExceptT@'s monad class instances. Therefore, you may 
+                     have to declare @import Control.Monad.Except ()@ at the top of
+                     your file to get all of the @ExceptT@ instances in scope.
 homepage:            https://github.com/RyanGlScott/mtl-compat
 bug-reports:         https://github.com/RyanGlScott/mtl-compat/issues
 stability:           Provisional
@@ -17,22 +26,33 @@ cabal-version:       >=1.8
 
 source-repository head
   type:                git
-  description:         git://github.com/RyanGlScott/mtl-compat.git
+  location:            git://github.com/RyanGlScott/mtl-compat.git
 
-flag three
+flag two-point-one
   default:             False
   manual:              True
-  description:         Use transformers-0.3 or lower.
+  description:         Use @mtl-2.1.3.1@ or earlier with @transformers-compat@.
+
+flag two-point-two
+  default:             False
+  manual:              True
+  description:         Use mtl-2.2.0.1.
 
 library
-  build-depends:       base                >= 4.3   && < 5
+  build-depends:       base                >= 4.3     && < 5
 
-  if flag(three)
+  if flag(two-point-one) || flag(two-point-two)
     exposed-modules:   Control.Monad.Except
     hs-source-dirs:    src
-    build-depends:     mtl                 >= 2.0.1 && < 2.2.1
-                     , transformers-compat >= 0.3   && < 0.4
+  
+  if flag(two-point-one)
+    build-depends:     mtl                 >= 2.0.1   && < 2.2
+                     , transformers-compat >= 0.3     && < 0.4
   else
-    build-depends:     mtl                 >= 2.2.1 && < 2.3
+    if flag(two-point-two)
+      build-depends:   mtl                 >= 2.2.0.1 && < 2.2.1
+                     , transformers        >= 0.4.1   && < 0.5
+    else
+      build-depends:   mtl                 >= 2.2.1   && < 2.3
 
   ghc-options:         -Wall
