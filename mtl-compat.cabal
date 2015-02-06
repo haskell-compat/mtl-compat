@@ -29,8 +29,8 @@ source-repository head
   location:            git://github.com/RyanGlScott/mtl-compat.git
 
 flag two-point-one
-  default:             True
-  manual:              True
+  default:             False
+  manual:              False
   description:         Use mtl-2.1.3.1 or earlier with transformers-compat.
                        This should toggle on/off automatically.
 
