@@ -1,8 +1,4 @@
 {-# LANGUAGE CPP #-}
-#if !(MIN_VERSION_mtl(2,2,0))
-{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, UndecidableInstances #-}
-{-# OPTIONS_GHC -fno-warn-orphans #-}
-#endif
 {- |
 Module      :  Control.Monad.Error
 Copyright   :  (c) Michael Weber <michael.weber@post.rwth-aachen.de> 2001,
@@ -74,45 +70,12 @@ import Control.Monad.Fix
 import Control.Monad.Instances ()
 #endif
 
-#if MIN_VERSION_mtl(2,2,0)
+#if MIN_VERSION_mtl(2,2,0) && !(MIN_VERSION_mtl(2,2,1))
 import Control.Monad.Cont.Class   ()
 import Control.Monad.RWS.Class    ()
 import Control.Monad.Reader.Class ()
 import Control.Monad.State.Class  ()
 import Control.Monad.Writer.Class ()
-#else
-import Control.Monad.Cont.Class (MonadCont(..))
-import Control.Monad.Reader.Class (MonadReader(..))
-import Control.Monad.RWS.Class (MonadRWS)
-import Control.Monad.State.Class (MonadState(..))
-import Control.Monad.Writer.Class (MonadWriter(..))
-import Control.Monad.Trans.Except
-  ( liftCallCC, throwE, catchE, liftListen, liftPass )
-
-instance MonadCont m => MonadCont (ExceptT e m) where
-    callCC = liftCallCC callCC
-
-instance Monad m => MonadError e (ExceptT e m) where
-    throwError = throwE
-    catchError = catchE
-
-instance MonadRWS r w s m => MonadRWS r w s (ExceptT e m)
-
-instance MonadReader r m => MonadReader r (ExceptT e m) where
-    ask    = lift ask
-    local  = mapExceptT . local
-    reader = lift . reader
-
-instance MonadState s m => MonadState s (ExceptT e m) where
-    get   = lift get
-    put   = lift . put
-    state = lift . state
-
-instance MonadWriter w m => MonadWriter w (ExceptT e m) where
-    writer = lift . writer
-    tell   = lift . tell
-    listen = liftListen listen
-    pass   = liftPass pass
 #endif
 
 {- $customErrorExample
