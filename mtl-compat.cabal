@@ -1,5 +1,5 @@
 name:                mtl-compat
-version:             0.1.1
+version:             0.2.0.4
 synopsis:            Backported Control.Monad.Except module from mtl
 description:         This package backports the "Control.Monad.Except" module from
                      @mtl@ (if using @mtl-2.2.0.1@ or earlier), which reexports the
@@ -7,8 +7,9 @@ description:         This package backports the "Control.Monad.Except" module fr
                      .
                      This package should only be used if there is a need to use the
                      @Control.Monad.Except@ module specifically. If you just want
-                     @mtl@ class instances for @ExceptT@, use @transformers-compat@ instead, since @mtl-compat@ does nothing but reexport the
-                     instances from that package.
+                     the @mtl@ class instances for @ExceptT@, use
+                     @transformers-compat@ instead, since @mtl-compat@ does nothing
+                     but reexport the instances from that package.
                      .
                      Note that unlike how @mtl-2.2@ or later works, the
                      "Control.Monad.Except" module defined in this package exports
