@@ -16,8 +16,8 @@ description:         This package backports the "Control.Monad.Except" module fr
                      all of @ExceptT@'s monad class instances. Therefore, you may 
                      have to declare @import Control.Monad.Except ()@ at the top of
                      your file to get all of the @ExceptT@ instances in scope.
-homepage:            https://github.com/RyanGlScott/mtl-compat
-bug-reports:         https://github.com/RyanGlScott/mtl-compat/issues
+homepage:            https://github.com/haskell-compat/mtl-compat
+bug-reports:         https://github.com/haskell-compat/mtl-compat/issues
 stability:           Provisional
 license:             BSD3
 license-file:        LICENSE
@@ -31,7 +31,7 @@ cabal-version:       >=1.8
 
 source-repository head
   type:                git
-  location:            git://github.com/RyanGlScott/mtl-compat.git
+  location:            git://github.com/haskell-compat/mtl-compat.git
 
 flag two-point-one
   default:             False

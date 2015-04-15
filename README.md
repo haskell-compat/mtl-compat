@@ -1,4 +1,4 @@
-# `mtl-compat` [![Hackage version](https://img.shields.io/hackage/v/mtl-compat.svg?style=flat)](http://hackage.haskell.org/package/mtl-compat) [![Build Status](https://img.shields.io/travis/RyanGlScott/mtl-compat.svg?style=flat)](https://travis-ci.org/RyanGlScott/mtl-compat)
+# `mtl-compat` [![Hackage version](https://img.shields.io/hackage/v/mtl-compat.svg?style=flat)](http://hackage.haskell.org/package/mtl-compat) [![Build Status](https://img.shields.io/travis/haskell-compat/mtl-compat.svg?style=flat)](https://travis-ci.org/haskell-compat/mtl-compat)
 
 This package backports the `Control.Monad.Except` module from `mtl` (if using `mtl-2.2.0.1` or earlier), which reexports the `ExceptT` monad transformer and the `MonadError` class.
 
