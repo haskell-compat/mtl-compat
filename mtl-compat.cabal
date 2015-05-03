@@ -31,7 +31,7 @@ cabal-version:       >=1.8
 
 source-repository head
   type:                git
-  location:            git://github.com/haskell-compat/mtl-compat.git
+  location:            https://github.com/haskell-compat/mtl-compat
 
 flag two-point-one
   default:             False

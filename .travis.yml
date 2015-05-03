@@ -1,10 +1,20 @@
 # NB: don't set `language: haskell` here
 
 env:
+ - CABALVER=1.18 GHCVER=7.0.4 MTLVER=-ftwo-point-one
+ - CABALVER=1.18 GHCVER=7.0.4 MTLVER=-ftwo-point-two
  - CABALVER=1.18 GHCVER=7.0.4
+ - CABALVER=1.18 GHCVER=7.2.2 MTLVER=-ftwo-point-one
+ - CABALVER=1.18 GHCVER=7.2.2 MTLVER=-ftwo-point-two
  - CABALVER=1.18 GHCVER=7.2.2
+ - CABALVER=1.18 GHCVER=7.4.2 MTLVER=-ftwo-point-one
+ - CABALVER=1.18 GHCVER=7.4.2 MTLVER=-ftwo-point-two
  - CABALVER=1.18 GHCVER=7.4.2
+ - CABALVER=1.18 GHCVER=7.6.3 MTLVER=-ftwo-point-one
+ - CABALVER=1.18 GHCVER=7.6.3 MTLVER=-ftwo-point-two
  - CABALVER=1.18 GHCVER=7.6.3
+ - CABALVER=1.18 GHCVER=7.8.4 MTLVER=-ftwo-point-one
+ - CABALVER=1.18 GHCVER=7.8.4 MTLVER=-ftwo-point-two
  - CABALVER=1.18 GHCVER=7.8.4
  - CABALVER=1.22 GHCVER=7.10.1
  - CABALVER=head GHCVER=head
@@ -23,7 +33,7 @@ install:
  - cabal --version
  - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
  - travis_retry cabal update
- - cabal install -j --only-dependencies
+ - cabal install -j --only-dependencies $MTLVER
 
 script:
  - if [ -f configure.ac ]; then autoreconf -i; fi
