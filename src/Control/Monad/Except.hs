@@ -57,7 +57,7 @@ module Control.Monad.Except
 import Control.Monad.Error.Class
 import Control.Monad.Trans
 import Control.Monad.Trans.Except
-  ( ExceptT(ExceptT), Except
+  ( ExceptT(..), Except
   , runExcept, runExceptT
   , mapExcept, mapExceptT
   , withExcept, withExceptT
