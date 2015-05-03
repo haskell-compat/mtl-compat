@@ -37,7 +37,7 @@ install:
 
 script:
  - if [ -f configure.ac ]; then autoreconf -i; fi
- - cabal configure -v2
+ - cabal configure -v2 $MTLVER
  - cabal build --ghc-option=-Werror
  - cabal check
  - cabal sdist
