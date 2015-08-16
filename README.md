@@ -1,4 +1,19 @@
-# `mtl-compat` [![Hackage version](https://img.shields.io/hackage/v/mtl-compat.svg?style=flat)](http://hackage.haskell.org/package/mtl-compat) [![Build Status](https://img.shields.io/travis/haskell-compat/mtl-compat.svg?style=flat)](https://travis-ci.org/haskell-compat/mtl-compat)
+# `mtl-compat`
+[![Hackage](https://img.shields.io/hackage/v/mtl-compat.svg)][Hackage: mtl-compat]
+[![Hackage Dependencies](https://img.shields.io/hackage-deps/v/mtl-compat.svg)](http://packdeps.haskellers.com/reverse/mtl-compat)
+[![Haskell Programming Language](https://img.shields.io/badge/language-Haskell-blue.svg)][Haskell.org]
+[![BSD3 License](http://img.shields.io/badge/license-BSD3-brightgreen.svg)][tl;dr Legal: BSD3]
+[![Build](https://img.shields.io/travis/haskell-compat/mtl-compat.svg)](https://travis-ci.org/haskell-compat/mtl-compat)
+
+[Hackage: mtl-compat]:
+  http://hackage.haskell.org/package/mtl-compat
+  "mtl-compat package on Hackage"
+[Haskell.org]:
+  http://www.haskell.org
+  "The Haskell Programming Language"
+[tl;dr Legal: BSD3]:
+  https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29
+  "BSD 3-Clause License (Revised)"
 
 This package backports the `Control.Monad.Except` module from `mtl` (if using `mtl-2.2.0.1` or earlier), which reexports the `ExceptT` monad transformer and the `MonadError` class.
 
