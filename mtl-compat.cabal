@@ -63,7 +63,7 @@ library
 
   if flag(two-point-one)
     build-depends:     mtl                 >= 2.0.1   && < 2.2
-                     , transformers-compat >= 0.4     && < 0.6
+                     , transformers-compat >= 0.4     && < 0.7
   else
     if flag(two-point-two)
       build-depends:   mtl                 >= 2.2.0.1 && < 2.2.1
