@@ -1,5 +1,5 @@
 constraint-set two-point-one
-  constraints: two-point-one
+  constraints: mtl-compat +two-point-one
 
 constraint-set two-point-two
-  constraints: two-point-two
+  constraints: mtl-compat +two-point-two
