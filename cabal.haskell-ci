@@ -1,5 +1,7 @@
 constraint-set two-point-one
+  ghc: < 7.10
   constraints: mtl-compat +two-point-one
 
 constraint-set two-point-two
+  ghc: < 7.10
   constraints: mtl-compat +two-point-two
