@@ -151,10 +151,10 @@ script:
   - rm -rf cabal.project.local
 
   # Constraint set two-point-one
-  - if [ $HCNUMVER -ge 0 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='two-point-one' all; else echo skipping...; fi
+  - if [ $HCNUMVER -ge 0 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='mtl-compat +two-point-one' all; else echo skipping...; fi
 
   # Constraint set two-point-two
-  - if [ $HCNUMVER -ge 0 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='two-point-two' all; else echo skipping...; fi
+  - if [ $HCNUMVER -ge 0 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='mtl-compat +two-point-two' all; else echo skipping...; fi
 
 
 # REGENDATA ["-o",".travis.yml","--ghc-head","--jobs=2","--no-no-tests-no-bench","--no-unconstrained","--local-ghc-options=-Werror","--config=cabal.haskell-ci","cabal.project"]
