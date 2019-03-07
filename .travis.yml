@@ -159,5 +159,5 @@ script:
   - if [ $HCNUMVER -ge 0 ] && [ $HCNUMVER -lt 71000 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='mtl-compat +two-point-two' all; else echo skipping...; fi
 
 
-# REGENDATA ["-o",".travis.yml","--ghc-head","--jobs=2","--no-no-tests-no-bench","--no-unconstrained","--local-ghc-options=-Werror","--config=cabal.haskell-ci","--env=7.8.4:NOINSTALLEDCONSTRAINTS=true","cabal.project"]
+# REGENDATA ["--output=.travis.yml","--config=cabal.haskell-ci","cabal.project"]
 # EOF
