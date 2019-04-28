@@ -46,13 +46,13 @@ source-repository head
 
 flag two-point-one
   default:             False
-  manual:              True
+  manual:              False
   description:         Use mtl-2.1.3.1 or earlier with transformers-compat. This
                        will cause this package to export the Control.Monad.Except module.
 
 flag two-point-two
   default:             False
-  manual:              True
+  manual:              False
   description:         Use mtl-2.2.0.1 with transformers. This will cause this
                        package to export the Control.Monad.Except module.
 
@@ -63,14 +63,16 @@ library
     exposed-modules:   Control.Monad.Except
     hs-source-dirs:    src
 
-  if flag(two-point-one)
-    build-depends:     mtl                 >= 2.0.1   && < 2.2
-                     , transformers-compat >= 0.4     && < 0.7
+  if flag(two-point-two)
+    build-depends:   mtl                   >= 2.2.0.1 &&  < 2.2.1
+                   , transformers          >= 0.4.1   &&  < 0.6
   else
-    if flag(two-point-two)
-      build-depends:   mtl                 >= 2.2.0.1 && < 2.2.1
-                     , transformers        >= 0.4.1   && < 0.6
-    else
-      build-depends:   mtl                 >= 2.2.1   && < 2.3
+    build-depends:   mtl                    < 2.2.0.1 || >= 2.2.1
+
+  if flag(two-point-one)
+    build-depends:     mtl                 >= 2.0.1   &&  < 2.2
+                     , transformers-compat >= 0.4     &&  < 0.7
+  else
+    build-depends:     mtl                 >= 2.2
 
   ghc-options:         -Wall
