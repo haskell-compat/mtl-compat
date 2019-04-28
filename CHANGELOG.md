@@ -1,4 +1,4 @@
-### next [????.??.??]
+### 0.2.2 [2019.04.28]
 * `mtl-compat` now uses automatic flags instead of manual ones. This has a
   number of benefits:
 
