@@ -1,4 +1,3 @@
-ghc-head:               True
 no-tests-no-benchmarks: False
 unconstrained:          ==7.8.*
 local-ghc-options:      -Werror
