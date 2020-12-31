@@ -3,7 +3,7 @@
 [![Hackage Dependencies](https://img.shields.io/hackage-deps/v/mtl-compat.svg)](http://packdeps.haskellers.com/reverse/mtl-compat)
 [![Haskell Programming Language](https://img.shields.io/badge/language-Haskell-blue.svg)][Haskell.org]
 [![BSD3 License](http://img.shields.io/badge/license-BSD3-brightgreen.svg)][tl;dr Legal: BSD3]
-[![Build](https://img.shields.io/travis/haskell-compat/mtl-compat.svg)](https://travis-ci.org/haskell-compat/mtl-compat)
+[![Build Status](https://github.com/haskell-compat/mtl-compat/workflows/Haskell-CI/badge.svg)](https://github.com/haskell-compat/mtl-compat/actions?query=workflow%3AHaskell-CI)
 
 [Hackage: mtl-compat]:
   http://hackage.haskell.org/package/mtl-compat
